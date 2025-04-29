@@ -7,23 +7,28 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LogIn, UserPlus } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     
     try {
       await signIn(email, password);
       navigate("/");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Login error:", error);
+      setError(error.message || "An error occurred during login");
     } finally {
       setIsLoading(false);
     }
@@ -32,12 +37,15 @@ const Auth = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     
     try {
       await signUp(email, password);
-      // Stay on the page for confirmation message
-    } catch (error) {
+      // Set success message for registration
+      setError("Registration successful! Please check your email for verification.");
+    } catch (error: any) {
       console.error("Registration error:", error);
+      setError(error.message || "An error occurred during registration");
     } finally {
       setIsLoading(false);
     }
@@ -48,6 +56,16 @@ const Auth = () => {
       <div className="flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold text-center mb-6">Welcome to CutHere</h1>
+          
+          {error && (
+            <Alert variant={error.includes("successful") ? "default" : "destructive"} className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>{error.includes("successful") ? "Success" : "Error"}</AlertTitle>
+              <AlertDescription>
+                {error}
+              </AlertDescription>
+            </Alert>
+          )}
           
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
