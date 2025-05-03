@@ -5,6 +5,8 @@ import LocationBar from "../components/home/LocationBar";
 import SearchBar from "../components/home/SearchBar";
 import BarberCard from "../components/home/BarberCard";
 import ServiceCard from "../components/home/ServiceCard";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 
 const services = [
   { 
@@ -64,16 +66,34 @@ const barbers = [
 ];
 
 const Index = () => {
+  const showPromoToast = () => {
+    toast({
+      title: "Special Offer!",
+      description: "Get 20% off on your first haircut! Use code: NEWCUT",
+    });
+  };
+
   return (
     <Layout>
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold font-poppins">Hello, Adam</h1>
-          <p className="text-gray-600">Looking for a haircut today?</p>
+          <h1 className="text-2xl font-bold font-poppins">Hello there! 👋</h1>
+          <p className="text-gray-600">Ready for a fresh new look today?</p>
         </div>
         
         <LocationBar />
         <SearchBar />
+
+        {/* Promotion Banner */}
+        <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg mb-6 p-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="font-medium text-primary">Weekend Special!</h3>
+              <p className="text-sm">Get 20% off on all services</p>
+            </div>
+            <Button size="sm" onClick={showPromoToast}>View Offer</Button>
+          </div>
+        </div>
         
         <div className="mb-6">
           <div className="flex justify-between items-center mb-4">
@@ -81,7 +101,7 @@ const Index = () => {
             <button className="text-primary text-sm font-medium">View all</button>
           </div>
           
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {services.map(service => (
               <ServiceCard 
                 key={service.id}
@@ -92,10 +112,10 @@ const Index = () => {
             ))}
           </div>
         </div>
-        
-        <div className="mb-4">
+
+        <div className="mb-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold font-poppins">Barbers nearby</h2>
+            <h2 className="text-lg font-semibold font-poppins">Popular Barbers</h2>
             <button className="text-primary text-sm font-medium">View all</button>
           </div>
           

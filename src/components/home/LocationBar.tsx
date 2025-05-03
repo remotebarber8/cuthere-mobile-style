@@ -3,15 +3,15 @@ import { MapPin } from "lucide-react";
 
 export default function LocationBar() {
   return (
-    <div className="flex items-center justify-between bg-white rounded-lg border border-gray-200 p-3 mb-4">
-      <div className="flex items-center">
-        <MapPin size={20} className="text-primary mr-2" />
-        <div>
-          <p className="text-sm text-gray-600">Current Location</p>
-          <p className="font-medium">New York, NY</p>
-        </div>
+    <div className="flex items-center bg-white rounded-full shadow-sm border border-gray-200 p-3 mb-6">
+      <div className="p-1 bg-primary/10 rounded-full">
+        <MapPin size={16} className="text-primary" />
       </div>
-      <button className="text-primary text-sm font-medium">Change</button>
+      <div className="ml-3">
+        <p className="text-sm font-medium">Deliver to</p>
+        <p className="text-xs text-gray-500">123 Main Street, Apartment 4B</p>
+      </div>
+      <button className="ml-auto text-xs font-medium text-primary">Change</button>
     </div>
   );
 }

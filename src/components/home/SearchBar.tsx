@@ -9,8 +9,8 @@ export default function SearchBar() {
       </div>
       <input
         type="text"
-        className="bg-white w-full pl-10 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-        placeholder="Search for haircuts, barbers..."
+        className="bg-white w-full pl-10 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm"
+        placeholder="Search for haircuts, beard trims..."
       />
     </div>
   );

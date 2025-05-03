@@ -17,7 +17,7 @@ export default function BarberCard({
 }: BarberCardProps) {
   return (
     <Link to={`/barber/${id}`}>
-      <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 mb-4">
+      <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 mb-4 hover:shadow-md transition-shadow duration-300">
         <div className="relative">
           <img 
             src={image} 
@@ -37,8 +37,8 @@ export default function BarberCard({
         <div className="p-3">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-xs text-gray-500">{reviews} reviews</p>
-              <p className="text-xs text-gray-500">{distance} away</p>
+              <p className="text-xs text-gray-500">{reviews} happy customers</p>
+              <p className="text-xs text-gray-500">Only {distance} away</p>
             </div>
             <div className="flex items-center">
               <div className="text-xs bg-accent/10 text-accent py-1 px-2 rounded-full font-medium">
@@ -46,7 +46,7 @@ export default function BarberCard({
               </div>
             </div>
           </div>
-          <button className="bg-primary text-white w-full py-2 rounded-md mt-3 text-sm font-medium">
+          <button className="bg-primary text-white w-full py-2 rounded-md mt-3 text-sm font-medium hover:bg-primary/90 transition-colors">
             Book now
           </button>
         </div>
