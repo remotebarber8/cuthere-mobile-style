@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 import Index from "./pages/Index";
 import BarberProfile from "./pages/BarberProfile";
@@ -39,68 +38,19 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/barber/:id" element={<BarberProfile />} />
             
-            {/* Protected routes */}
-            <Route 
-              path="/booking/:id" 
-              element={
-                <ProtectedRoute>
-                  <BookingPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/tracking/:id" 
-              element={
-                <ProtectedRoute>
-                  <TrackingPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/bookings" 
-              element={
-                <ProtectedRoute>
-                  <Bookings />
-                </ProtectedRoute>
-              } 
-            />
+            {/* Temporarily removed authentication requirements */}
+            <Route path="/booking/:id" element={<BookingPage />} />
+            <Route path="/tracking/:id" element={<TrackingPage />} />
+            <Route path="/bookings" element={<Bookings />} />
             <Route path="/profile" element={<Profile />} />
             
-            {/* Admin routes */}
-            <Route 
-              path="/admin" 
-              element={
-                <ProtectedRoute requiredRoles={['admin']}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/admin/users" 
-              element={
-                <ProtectedRoute requiredRoles={['admin']}>
-                  <UserManagement />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/admin/barbers" 
-              element={
-                <ProtectedRoute requiredRoles={['admin']}>
-                  <BarberManagement />
-                </ProtectedRoute>
-              } 
-            />
+            {/* Admin routes - temporarily accessible to all */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<UserManagement />} />
+            <Route path="/admin/barbers" element={<BarberManagement />} />
             
-            {/* Barber routes */}
-            <Route 
-              path="/barber-dashboard" 
-              element={
-                <ProtectedRoute requiredRoles={['barber']}>
-                  <BarberDashboard />
-                </ProtectedRoute>
-              } 
-            />
+            {/* Barber routes - temporarily accessible to all */}
+            <Route path="/barber-dashboard" element={<BarberDashboard />} />
             
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
